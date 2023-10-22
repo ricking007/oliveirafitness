@@ -1,0 +1,914 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Dashboad'" [items]="['Home']" [active_item]="'Dashboad'"></app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-xl-3">
+        <div class="card info-card">
+          <div class="info-box8">
+            <i class="material-icons bg-purple card1-icon">shopping_cart</i>
+            <h5 class="col-deep-purple">Total Sales</h5>
+            <h4>258</h4>
+            <div>
+              <i class="material-icons col-red float-start me-1 ms-1">trending_down</i>
+              <p class="float-start m-0"><span class="col-orange">10%</span> Decrease
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card info-card">
+          <div class="info-box8">
+            <i class="material-icons bg-orange card1-icon">people</i>
+            <h5 class="col-orange">Customers</h5>
+            <h4>1,287</h4>
+            <div>
+              <i class="material-icons col-green float-start me-1 ms-1">trending_up</i>
+              <p class="float-start m-0"><span class="col-green">25%</span> Increase
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card info-card">
+          <div class="info-box8">
+            <i class="material-icons bg-green card1-icon">local_activity</i>
+            <h5 class="col-green">New Tickets</h5>
+            <h4>128 </h4>
+            <div>
+              <i class="material-icons col-red float-start me-1 ms-1">trending_down</i>
+              <p class="float-start m-0"><span class="col-orange">12%</span> Decrease
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card info-card">
+          <div class="info-box8">
+            <i class="material-icons bg-blue card1-icon">attach_money</i>
+            <h5 class="col-blue">Revenue</h5>
+            <h4>$48,697</h4>
+            <div>
+              <i class="material-icons col-green float-start me-1 ms-1">trending_up</i>
+              <p class="float-start m-0"><span class="col-green">08%</span> Increase
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>Earning Chart</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>
+                <mat-icon>add_circle_outline</mat-icon>
+                <span>Add</span>
+              </button>
+              <button mat-menu-item disabled>
+                <mat-icon>delete_outline</mat-icon>
+                <span>Delete</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>refresh</mat-icon>
+                <span>Refresh</span>
+              </button>
+            </mat-menu>
+          </div>
+          <div class="body p-5">
+            <ul class="list-inline text-center m-b-0">
+              <li class="list-inline-item p-r-30">
+                <app-feather-icons [icon]="'arrow-up-circle'" [class]="'col-green'"></app-feather-icons>
+                <h5 class="m-b-0">$675</h5>
+                <p class="text-muted font-14 m-b-0">Weekly Earnings</p>
+              </li>
+              <li class="list-inline-item p-r-30">
+                <app-feather-icons [icon]="'arrow-down-circle'" [class]="'col-orange'">
+                </app-feather-icons>
+                <h5 class="m-b-0">$1,587</h5>
+                <p class="text-muted font-14 m-b-0">Monthly Earnings</p>
+              </li>
+              <li class="list-inline-item p-r-30">
+                <app-feather-icons [icon]="'arrow-up-circle'" [class]="'col-green'"></app-feather-icons>
+                <h5 class="mb-0 m-b-0">$45,965</h5>
+                <p class="text-muted font-14 m-b-0">Yearly Earnings</p>
+              </li>
+            </ul>
+            <apx-chart [series]="earningOptions.series!" [chart]="earningOptions.chart!" [xaxis]="earningOptions.xaxis!"
+              [stroke]="earningOptions.stroke!" [tooltip]="earningOptions.tooltip!"
+              [dataLabels]="earningOptions.dataLabels!" [legend]="earningOptions.legend!"
+              [markers]="earningOptions.markers!" [grid]="earningOptions.grid!" [yaxis]="earningOptions.yaxis!"
+              [title]="earningOptions.title!">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Transactions</h2>
+          </div>
+          <div class="body">
+            <ng-scrollbar style="height: 380px" visibility="hover">
+              <ul class="p-0 m-0">
+                <li class="d-flex mb-4 pb-1">
+                  <div class="icon-box icon-box-green">
+                    <i class="material-icons col-green">account_balance</i>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="me-2 ms-2">
+                      <small class="text-muted mb-1">Bank Transfer</small>
+                      <h6 class="mb-0">Send money</h6>
+                    </div>
+                    <div class="d-flex align-items-center amount-section">
+                      <h6 class="mb-0 col-orange">100.65</h6> <i class="material-icons col-orange">attach_money</i>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="icon-box icon-box-orange">
+                    <i class="material-icons col-orange">account_balance_wallet</i>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="me-2 ms-2">
+                      <small class="text-muted mb-1">Wallet</small>
+                      <h6 class="mb-0">Wallet recharge</h6>
+                    </div>
+                    <div class="d-flex align-items-center amount-section">
+                      <h6 class="mb-0 col-green">2000</h6> <i class="material-icons col-green">attach_money</i>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="icon-box icon-box-purple">
+                    <i class="material-icons col-deep-purple">credit_card</i>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="me-2 ms-2">
+                      <small class="text-muted mb-1">Credit Card</small>
+                      <h6 class="mb-0">Ordered Food</h6>
+                    </div>
+                    <div class="d-flex align-items-center amount-section">
+                      <h6 class="mb-0 col-orange">25.69</h6> <i class="material-icons col-orange">attach_money</i>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="icon-box icon-box-blue">
+                    <i class="material-icons col-blue">attach_money</i>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="me-2 ms-2">
+                      <small class="text-muted mb-1">Cash Payment</small>
+                      <h6 class="mb-0">Sell Stationery</h6>
+                    </div>
+                    <div class="d-flex align-items-center amount-section">
+                      <h6 class="mb-0 col-green">148.47</h6> <i class="material-icons col-green">attach_money</i>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="icon-box icon-box-red">
+                    <i class="material-icons col-red">credit_card</i>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="me-2 ms-2">
+                      <small class="text-muted mb-1">Debit Card</small>
+                      <h6 class="mb-0">ATM Withdraw</h6>
+                    </div>
+                    <div class="d-flex align-items-center amount-section">
+                      <h6 class="mb-0 col-orange">100.65</h6> <i class="material-icons col-orange">attach_money</i>
+                    </div>
+                  </div>
+                </li>
+                <li class="d-flex mb-4 pb-1">
+                  <div class="icon-box icon-box-green">
+                    <i class="material-icons col-green">account_balance</i>
+                  </div>
+                  <div class="d-flex w-100 align-items-center justify-content-between">
+                    <div class="me-2 ms-2">
+                      <small class="text-muted mb-1">Bank Transfer</small>
+                      <h6 class="mb-0">Send money</h6>
+                    </div>
+                    <div class="d-flex align-items-center amount-section">
+                      <h6 class="mb-0 col-orange">100.65</h6> <i class="material-icons col-orange">attach_money</i>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </ng-scrollbar>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="float-start">
+              <h6 class="text-muted">Average Daily Bill</h6>
+              <h5>129 Dollar <span class="text-muted font-12">(Average)</span></h5>
+            </div>
+            <div class="mb-5">
+              <apx-chart [series]="performanceRateChartOptions.series!" [chart]="performanceRateChartOptions.chart!"
+                [xaxis]="performanceRateChartOptions.xaxis!" [stroke]="performanceRateChartOptions.stroke!"
+                [colors]="performanceRateChartOptions.colors!" [dataLabels]="performanceRateChartOptions.dataLabels!"
+                [legend]="performanceRateChartOptions.legend!" [markers]="performanceRateChartOptions.markers!"
+                [grid]="performanceRateChartOptions.grid!" [yaxis]="performanceRateChartOptions.yaxis!"
+                [tooltip]="performanceRateChartOptions.tooltip!" [title]="performanceRateChartOptions.title!">
+              </apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>Invoices</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>Invoice No</th>
+                    <th>Client Name</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Total </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN7865 </a></td>
+                    <td><img src="assets/images/user/user1.jpg" alt="" class="tbl-user-img-small">John Doe
+                    </td>
+                    <td>12/05/2016 </td>
+                    <td>
+                      <div class="badge badge-solid-green">Paid</div>
+                    </td>
+                    <td>
+                      $500
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN2301 </a></td>
+                    <td><img src="assets/images/user/user2.jpg" alt="" class="tbl-user-img-small">Sarah Smith
+                    </td>
+                    <td>31/03/2016 </td>
+                    <td>
+                      <div class="badge badge-solid-red">Unpaid</div>
+                    </td>
+                    <td>
+                      $372
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN7239 </a></td>
+                    <td><img src="assets/images/user/user3.jpg" alt="" class="tbl-user-img-small">Airi Satou
+                    </td>
+                    <td>14/04/2017 </td>
+                    <td>
+                      <div class="badge badge-solid-orange">Partially Paid</div>
+                    </td>
+                    <td>
+                      $1038
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN1482 </a></td>
+                    <td><img src="assets/images/user/user4.jpg" alt="" class="tbl-user-img-small">Angelica
+                      Ramos</td>
+                    <td>11/08/2017 </td>
+                    <td>
+                      <div class="badge badge-solid-green">Paid</div>
+                    </td>
+                    <td>
+                      $872
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN8526 </a></td>
+                    <td><img src="assets/images/user/user5.jpg" alt="" class="tbl-user-img-small">Ashton Cox
+                    </td>
+                    <td>15/02/2018 </td>
+                    <td>
+                      <div class="badge badge-solid-red">Unpaid</div>
+                    </td>
+                    <td>
+                      $2398
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN2473 </a></td>
+                    <td><img src="assets/images/user/user6.jpg" alt="" class="tbl-user-img-small">Cara Stevens
+                    </td>
+                    <td>28/01/2017 </td>
+                    <td>
+                      <div class="badge badge-solid-green">Paid</div>
+                    </td>
+                    <td>
+                      $834
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><a [routerLink]="['/admin/accounts/invoice']"> #IN7366 </a></td>
+                    <td><img src="assets/images/user/user7.jpg" alt="" class="tbl-user-img-small">Jacob Ryan
+                    </td>
+                    <td>11/03/2017 </td>
+                    <td>
+                      <div class="badge badge-solid-orange">Partially Paid</div>
+                    </td>
+                    <td>
+                      $147
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Project Status</h2>
+          </div>
+          <div class="body">
+            <ng-scrollbar style="height: 380px" visibility="hover">
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Angular App</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate"
+                        class="progress-m progress-round green-progress progress-shadow" value="90">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Java Software</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="54" class="progress-m progress-round red-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Html Website</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="68" class="progress-m progress-round sky-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>IOS App</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="40" class="progress-m progress-round orange-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Python Project</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="28" class="progress-m progress-round green-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Reactjs App</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="89" class="progress-m progress-round sky-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Angular App</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="78" class="progress-m progress-round green-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="m-2">
+                <div class="row">
+                  <div class="col-lg-5">
+                    <div>Java Software</div>
+                  </div>
+                  <div class="col-lg-7">
+                    <div class="mt-1">
+                      <mat-progress-bar mode="determinate" value="54" class="progress-m progress-round red-progress">
+                      </mat-progress-bar>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-scrollbar>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Todo List</h2>
+          </div>
+          <div class="body">
+            <ng-scrollbar style="height: 370px" visibility="hover">
+              <div cdkDropList class="task-list" (cdkDropListDropped)="drop($event)">
+                <div class="task-box" *ngFor="let task of tasks" cdkDrag>
+                  <div>
+                    <div class="task-handle m-r-20" cdkDragHandle>
+                      <mat-icon aria-hidden="false">drag_indicator</mat-icon>
+                    </div>
+                  </div>
+                  <mat-checkbox (change)="toggle(task)" [checked]="!!task.done" class="m-r-15" color="primary">
+                  </mat-checkbox>
+                  <div class="task-custom-placeholder" *cdkDragPlaceholder></div>
+                  <div matTooltip="Title" [ngClass]="{done:task.done}">
+                    {{task.title}}</div>
+                  <div
+                    [ngClass]="{'task-low': task.priority==='Low', 'task-high': task.priority==='High','task-normal': task.priority==='Normal'}">
+                    <mat-icon matTooltip="Low" aria-hidden="false" class="lbl-low" *ngIf="task?.priority === 'Low'">
+                      arrow_downward
+                    </mat-icon>
+                    <mat-icon matTooltip="High" aria-hidden="false" class="lbl-high" *ngIf="task?.priority === 'High'">
+                      arrow_upward
+                    </mat-icon>
+                    <mat-icon matTooltip="Normal" aria-hidden="false" class="lbl-normal"
+                      *ngIf="task?.priority === 'Normal'">
+                      remove</mat-icon>
+                    {{task.priority}}
+                  </div>
+                </div>
+              </div>
+            </ng-scrollbar>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Documents</h2>
+          </div>
+          <div class="body">
+            <div class="doc-file-type">
+              <ng-scrollbar style="height: 380px" visibility="hover">
+                <ul class="list-unstyled">
+                  <li class="d-flex mb-3">
+                    <span class="msr-3 align-self-center img-icon primary-rgba text-primary"><i
+                        class="far fa-file-word"></i></span>
+                    <div class="set-flex">
+                      <h5 class="font-16 mb-1">Aggrement Doc</h5>
+                      <p>.doc, 4.3 MB</p>
+                    </div>
+                    <div class="ms-auto">
+                      <td>
+                        <i class="far fa-trash-alt psr-3"></i>
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                      </td>
+                    </div>
+                  </li>
+                  <li class="d-flex mb-3">
+                    <span class="msr-3 align-self-center img-icon success-rgba text-success"><i
+                        class="far fa-file-excel"></i></span>
+                    <div class="set-flex">
+                      <h5 class="font-16 mb-1">Stock Details</h5>
+                      <p>.xls, 2.5 MB</p>
+                    </div>
+                    <div class="ms-auto">
+                      <td>
+                        <i class="far fa-trash-alt psr-3"></i>
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                      </td>
+                    </div>
+                  </li>
+                  <li class="d-flex mb-3">
+                    <span class="msr-3 align-self-center img-icon danger-rgba text-danger"><i
+                        class="far fa-file-pdf"></i></span>
+                    <div class="set-flex">
+                      <h5 class="font-16 mb-1">Project Requi..</h5>
+                      <p>.pdf, 10.5 MB</p>
+                    </div>
+                    <div class="ms-auto">
+                      <td>
+                        <i class="far fa-trash-alt psr-3"></i>
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                      </td>
+                    </div>
+                  </li>
+                  <li class="d-flex mb-3">
+                    <span class="msr-3 align-self-center img-icon info-rgba text-info"><i
+                        class="far fa-file-archive"></i></span>
+                    <div class="set-flex">
+                      <h5 class="font-16 mb-1">Sample Code</h5>
+                      <p>.zip, 53.2 MB</p>
+                    </div>
+                    <div class="ms-auto">
+                      <td>
+                        <i class="far fa-trash-alt psr-3"></i>
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                      </td>
+                    </div>
+                  </li>
+                  <li class="d-flex mb-3">
+                    <span class="msr-3 align-self-center img-icon primary-rgba text-primary"><i
+                        class="far fa-file-word"></i></span>
+                    <div class="set-flex">
+                      <h5 class="font-16 mb-1">Privacy Policy</h5>
+                      <p>.doc, 5.3 MB</p>
+                    </div>
+                    <div class="ms-auto">
+                      <td>
+                        <i class="far fa-trash-alt psr-3"></i>
+                        <i class="far fa-arrow-alt-circle-down"></i>
+                      </td>
+                    </div>
+                  </li>
+                </ul>
+              </ng-scrollbar>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Client Survay</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <apx-chart [series]="areaChartOptions.series!" [chart]="areaChartOptions.chart!"
+              [xaxis]="areaChartOptions.xaxis!" [yaxis]="areaChartOptions.yaxis!" [colors]="areaChartOptions.colors!"
+              [stroke]="areaChartOptions.stroke!" [legend]="areaChartOptions.legend!" [grid]="areaChartOptions.grid!"
+              [tooltip]="areaChartOptions.tooltip!" [dataLabels]="areaChartOptions.dataLabels!"></apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Support Tickets Survay</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <apx-chart [series]="barChartOptions.series!" [chart]="barChartOptions.chart!"
+              [dataLabels]="barChartOptions.dataLabels!" [plotOptions]="barChartOptions.plotOptions!"
+              [responsive]="barChartOptions.responsive!" [xaxis]="barChartOptions.xaxis!" [grid]="barChartOptions.grid!"
+              [tooltip]="barChartOptions.tooltip!" [legend]="barChartOptions.legend!" [fill]="barChartOptions.fill!">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>Projects Details</h2>
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>Action</button>
+              <button mat-menu-item>Another action</button>
+              <button mat-menu-item>Something else here</button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Project Name</th>
+                    <th>Employees Team</th>
+                    <th>Team Leader</th>
+                    <th>Priority</th>
+                    <th>Open Task</th>
+                    <th>Completed Task</th>
+                    <th>Status</th>
+                    <th>Documents</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Angular App</td>
+                    <td class="text-truncate">
+                      <ul class="list-unstyled order-list">
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user1.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user2.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user3.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><span class="badge">+4</span>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>John Doe</td>
+                    <td>
+                      <div class="badge col-blue">Medium</div>
+                    </td>
+                    <td>19</td>
+                    <td>10</td>
+                    <td>
+                      <mat-progress-bar mode="determinate" class="progress-xs progress-round green-progress" value="37">
+                      </mat-progress-bar>
+                    </td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                        </app-feather-icons>
+                      </button>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                        </app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Java ERP</td>
+                    <td class="text-truncate">
+                      <ul class="list-unstyled order-list">
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user7.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user2.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><span class="badge">+3</span>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>Sarah Smith</td>
+                    <td>
+                      <div class="badge col-green">Low</div>
+                    </td>
+                    <td>25</td>
+                    <td>18</td>
+                    <td>
+                      <mat-progress-bar mode="determinate" class="progress-xs progress-round orange-progress"
+                        value="73">
+                      </mat-progress-bar>
+                    </td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                        </app-feather-icons>
+                      </button>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                        </app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Angular App</td>
+                    <td class="text-truncate">
+                      <ul class="list-unstyled order-list">
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user2.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user1.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user8.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><span class="badge">+2</span>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>Airi Satou</td>
+                    <td>
+                      <div class="badge col-blue">Medium</div>
+                    </td>
+                    <td>33</td>
+                    <td>21</td>
+                    <td>
+                      <mat-progress-bar mode="determinate" class="progress-xs progress-round sky-progress" value="52">
+                      </mat-progress-bar>
+                    </td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                        </app-feather-icons>
+                      </button>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                        </app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>IOS App</td>
+                    <td class="text-truncate">
+                      <ul class="list-unstyled order-list">
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user5.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user3.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user9.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><span class="badge">+4</span>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>Angelica Ramos</td>
+                    <td>
+                      <div class="badge col-orange">High</div>
+                    </td>
+                    <td>26</td>
+                    <td>15</td>
+                    <td>
+                      <mat-progress-bar mode="determinate" class="progress-xs progress-round red-progress" value="40">
+                      </mat-progress-bar>
+                    </td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                        </app-feather-icons>
+                      </button>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                        </app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Wordpress</td>
+                    <td class="text-truncate">
+                      <ul class="list-unstyled order-list">
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user2.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user4.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><span class="badge">+3</span>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>Ashton Cox</td>
+                    <td>
+                      <div class="badge col-green">Low</div>
+                    </td>
+                    <td>12</td>
+                    <td>11</td>
+                    <td>
+                      <mat-progress-bar mode="determinate" class="progress-xs progress-round green-progress" value="88">
+                      </mat-progress-bar>
+                    </td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                        </app-feather-icons>
+                      </button>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                        </app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Jasper report</td>
+                    <td class="text-truncate">
+                      <ul class="list-unstyled order-list">
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user6.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user9.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><img class="rounded-circle" src="assets/images/user/user4.jpg"
+                            alt="user">
+                        </li>
+                        <li class="avatar avatar-sm"><span class="badge">+2</span>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>Cara Stevens</td>
+                    <td>
+                      <div class="badge col-orange">High</div>
+                    </td>
+                    <td>43</td>
+                    <td>22</td>
+                    <td>
+                      <mat-progress-bar mode="determinate" class="progress-xs progress-round orange-progress"
+                        value="67">
+                      </mat-progress-bar>
+                    </td>
+                    <td>
+                      <i class="far fa-file-pdf tbl-pdf"></i>
+                    </td>
+                    <td>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'">
+                        </app-feather-icons>
+                      </button>
+                      <button mat-icon-button color="accent" class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'">
+                        </app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

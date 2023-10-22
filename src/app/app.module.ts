@@ -1,82 +1,71 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
-import {AppRoutingModule} from '@/app-routing.module';
-import {AppComponent} from './app.component';
-import {MainComponent} from '@modules/main/main.component';
-import {LoginComponent} from '@modules/login/login.component';
-import {HeaderComponent} from '@modules/main/header/header.component';
-import {FooterComponent} from '@modules/main/footer/footer.component';
-import {MenuSidebarComponent} from '@modules/main/menu-sidebar/menu-sidebar.component';
-import {BlankComponent} from '@pages/blank/blank.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {ProfileComponent} from '@pages/profile/profile.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RegisterComponent} from '@modules/register/register.component';
-import {DashboardComponent} from '@pages/dashboard/dashboard.component';
-import {ToastrModule} from 'ngx-toastr';
-import {MessagesComponent} from '@modules/main/header/messages/messages.component';
-import {NotificationsComponent} from '@modules/main/header/notifications/notifications.component';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
-import {CommonModule, registerLocaleData} from '@angular/common';
-import localeEn from '@angular/common/locales/en';
-import {UserComponent} from '@modules/main/header/user/user.component';
-import {ForgotPasswordComponent} from '@modules/forgot-password/forgot-password.component';
-import {RecoverPasswordComponent} from '@modules/recover-password/recover-password.component';
-import {LanguageComponent} from '@modules/main/header/language/language.component';
-import {MainMenuComponent} from './pages/main-menu/main-menu.component';
-import {SubMenuComponent} from './pages/main-menu/sub-menu/sub-menu.component';
-import {MenuItemComponent} from './components/menu-item/menu-item.component';
-import {ControlSidebarComponent} from './modules/main/control-sidebar/control-sidebar.component';
-import {StoreModule} from '@ngrx/store';
-import {authReducer} from './store/auth/reducer';
-import {uiReducer} from './store/ui/reducer';
-import {ProfabricComponentsModule} from '@profabric/angular-components';
-import {SidebarSearchComponent} from './components/sidebar-search/sidebar-search.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { PageLoaderComponent } from './layout/page-loader/page-loader.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.component';
+import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
+import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
+import { fakeBackendProvider } from './core/interceptor/fake-backend';
+import { ErrorInterceptor } from './core/interceptor/error.interceptor';
+import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient,
+} from '@angular/common/http';
 
-registerLocaleData(localeEn, 'en-EN');
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
+}
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        MainComponent,
-        LoginComponent,
-        HeaderComponent,
-        FooterComponent,
-        MenuSidebarComponent,
-        BlankComponent,
-        ProfileComponent,
-        RegisterComponent,
-        DashboardComponent,
-        MessagesComponent,
-        NotificationsComponent,
-        UserComponent,
-        ForgotPasswordComponent,
-        RecoverPasswordComponent,
-        LanguageComponent,
-        MainMenuComponent,
-        SubMenuComponent,
-        MenuItemComponent,
-        ControlSidebarComponent,
-        SidebarSearchComponent
-    ],
-    imports: [
-        ProfabricComponentsModule,
-        CommonModule,
-        BrowserModule,
-        StoreModule.forRoot({auth: authReducer, ui: uiReducer}),
-        HttpClientModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        ToastrModule.forRoot({
-            timeOut: 3000,
-            positionClass: 'toast-top-right',
-            preventDuplicates: true
-        })
-    ],
-    providers: [],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    PageLoaderComponent,
+    SidebarComponent,
+    RightSidebarComponent,
+    AuthLayoutComponent,
+    MainLayoutComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    LoadingBarRouterModule,
+    NgScrollbarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+    // core & shared
+    CoreModule,
+    SharedModule,
+  ],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    fakeBackendProvider,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
