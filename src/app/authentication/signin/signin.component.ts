@@ -16,7 +16,8 @@ import { ApiUrl } from 'app/enums/api.enum';
 import { Permissao, Usuario } from 'app/interface/usuario.interface';
 import { IToken } from 'app/interface/token.interface';
 import { Messages } from 'app/enums/messages.enum';
-import { AuthService } from 'app/service/auth.service';
+import { AuthService as AuthService } from 'app/service/auth.service';
+import { AuthService as AuthService2 } from '@core';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -35,6 +36,7 @@ export class SigninComponent
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    private authService2: AuthService2,
     private swalAlertService: SwalAlertService,
     private storageService: StorageService,
     private loadingService: LoadingService,
@@ -76,12 +78,41 @@ export class SigninComponent
             type: "JWT",
             create_at: create_at
           }
+
+
+          //código do template
+          this.subs.sink = this.authService2
+            .login(this.f['username'].value, this.f['password'].value)
+            .subscribe({
+              next: (res) => {
+                if (res) {
+                  if (res) {
+                    const token = response.token;
+                    if (token) {
+                      this.router.navigate(['/dashboard/dashboard1']);
+                    }
+                  } else {
+                    this.error = 'Invalid Login';
+                  }
+                } else {
+                  this.error = 'Invalid Login';
+                }
+              },
+              error: (error) => {
+                this.error = error;
+                this.submitted = false;
+                this.loading = false;
+              },
+            });
+
+
           this.storageService.setData("permissoes", permissao);
           if (this.storageService.setData("token", token)) {
             this.storageService.setData("location", 'true');
             this.router.navigate(['/admin/dashboard/main']);
           }
         }
+
       } else {
         this.swalAlertService.error(Messages.ERRO, response.message);
       }

@@ -2,6 +2,8 @@ export interface Pedido {
   id_pedido: number;
   id_empresa: number;
   id_cliente: number;
+  id_origem: number;
+  dc_codigo: string;
   id_endereco: number;
   dt_cadastro: string;
   nm_valor: number;

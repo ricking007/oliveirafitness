@@ -2,6 +2,7 @@ export interface Produto {
   id_produto: number;
   id_empresa: number;
   id_categoria: number;
+  cd_ean: string;
   no_nome: string;
   dc_descricao: string;
   nm_valor: number;
