@@ -10,7 +10,8 @@ import { LockedComponent } from './locked/locked.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared';
-
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CpfCnpjMaskDirective } from './signup/cpf-cnpj-mask.directive';
 @NgModule({
   declarations: [
     Page500Component,
@@ -19,6 +20,7 @@ import { SharedModule } from '@shared';
     SignupComponent,
     LockedComponent,
     ForgotPasswordComponent,
+    CpfCnpjMaskDirective
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,9 @@ import { SharedModule } from '@shared';
     ReactiveFormsModule,
     AuthenticationRoutingModule,
     SharedModule,
+    NgxMaskDirective, NgxMaskPipe
   ],
+  exports: [CpfCnpjMaskDirective],
+  providers: [provideNgxMask()]
 })
 export class AuthenticationModule {}
