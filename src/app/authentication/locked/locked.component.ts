@@ -14,7 +14,7 @@ import { AuthService } from '@core';
 export class LockedComponent implements OnInit {
   authForm!: UntypedFormGroup;
   submitted = false;
-  userImg!: string;
+  userImg?: string;
   userFullName!: string;
   hide = true;
   constructor(

@@ -17,6 +17,11 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
       {
+        path: 'modulos',
+        loadChildren: () =>
+          import('./modulos/modulos.module').then((m) => m.ModulosModule),
+      },
+      {
         path: 'advance-table',
         loadChildren: () =>
           import('./advance-table/advance-table.module').then(

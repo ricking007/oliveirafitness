@@ -1,0 +1,106 @@
+.conteudo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: self-start;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+table {
+  text-transform: uppercase;
+}
+
+thead>tr, tbody>tr {
+  font-size: 11px;
+}
+
+thead>tr>th {
+  cursor: pointer;
+}
+
+thead>tr>th>i {
+  font-size: 20px;
+  opacity: 0.3;
+}
+
+.limitTextHeight {
+  height: 20px;
+  overflow: hidden;
+}
+
+.btn-mostrar {
+  color: rgb(179 169 169);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.centralizar{
+  text-align: center;
+}
+
+.justificado {
+  text-align: justify;
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  top: 8px;
+}
+
+.icon-size {
+  font-size: 150px;
+  margin: 10px;
+  opacity: 0.5;
+}
+
+.icon-size2 {
+  font-size: 30px;
+  opacity: 0.5;
+}
+
+.rounded-circle {
+  margin: 6px;
+  padding: 18px;
+}
+
+.conteudo {
+  margin-bottom: 15%;
+}
+
+.conteudo2 {
+  margin-bottom: 5%;
+}
+
+.bg-info {
+  position: relative;
+  top: -10px;
+  left: -1px;
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clicable {
+  cursor: pointer;
+}
+
+.btn{
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover{
+  transform: scale(1.1);
+}
+
+.tooltip-content {
+  user-select: text; /* Isso permite a seleção de texto dentro do tooltip */
+}
+

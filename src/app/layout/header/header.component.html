@@ -72,7 +72,7 @@
           </button>
         </li>
         <!-- #END# Full Screen Button -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <button mat-icon-button [matMenuTriggerFor]="languagemenu" class="lang-dropdown nav-notification-icons"> <img
               *ngIf="flagvalue !== undefined" src="{{flagvalue}}" height="16">
             <img *ngIf="flagvalue === undefined" src="{{defaultFlag}}" height="16"></button>
@@ -85,9 +85,9 @@
               </button>
             </div>
           </mat-menu>
-        </li>
+        </li> -->
         <!-- #START# Notifications-->
-        <li>
+        <!-- <li>
           <button mat-icon-button [matMenuTriggerFor]="notificationMenu" class="nav-notification-icons">
             <app-feather-icons [icon]="'bell'" [class]="'header-icon'"></app-feather-icons>
           </button>
@@ -127,13 +127,13 @@
                 All Notifications</a>
             </div>
           </mat-menu>
-        </li>
+        </li> -->
         <!-- #END# Notifications-->
         <li class="nav-item user_profile">
           <button mat-button [matMenuTriggerFor]="profilemenu">
             <div class="chip dropdown-toggle" ngbDropdownToggle class="">
-              <span>Ella Jones</span>
-              <img src="{{userImg}}" class="user_img" width="25" height="25" alt="User">
+              <span>{{usuario.no_nome}}</span>
+              <!-- <img src="{{userImg}}" class="user_img" width="25" height="25" alt="User"> -->
             </div>
           </button>
           <mat-menu #profilemenu="matMenu" class="profile-menu">
@@ -141,16 +141,16 @@
               <div class="menu ">
                 <div class="user_dw_menu">
                   <button mat-menu-item class="user-item-list">
-                    <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"></app-feather-icons>Account
+                    <app-feather-icons [icon]="'user'" [class]="'user-menu-icons'"></app-feather-icons>Conta
                   </button>
-                  <button mat-menu-item class="user-item-list">
+                  <!-- <button mat-menu-item class="user-item-list">
                     <app-feather-icons [icon]="'mail'" [class]="'user-menu-icons'"></app-feather-icons>Inbox
-                  </button>
+                  </button> -->
                   <button mat-menu-item class="user-item-list">
-                    <app-feather-icons [icon]="'settings'" [class]="'user-menu-icons'"></app-feather-icons>Settings
+                    <app-feather-icons [icon]="'settings'" [class]="'user-menu-icons'"></app-feather-icons>Configurações
                   </button>
                   <button mat-menu-item (click)="logout()" class="user-item-list">
-                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Logout
+                    <app-feather-icons [icon]="'log-out'" [class]="'user-menu-icons'"></app-feather-icons>Sair
                   </button>
                 </div>
               </div>

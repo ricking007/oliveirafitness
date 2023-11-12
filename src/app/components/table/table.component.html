@@ -1,0 +1,245 @@
+<ng-container>
+  <div class="card-header">
+    <!-- *ngIf="btnNovoCadastro&&permissoesService.permissao(newButton.permissao.IDMenu,newButton.permissao.permissao) == 'S'" -->
+    <h6>{{title}} <button type="button"
+        (click)="buttonClick(null,newButton,$event,null)"
+        class="btn btn-outline-primary btn-sm btn-sm"
+        title="Novo cadastro">
+        <i class="feather icon-plus-circle"></i>
+      </button></h6>
+    <div class="col-md-4 pull-right" *ngIf="rows && rows.length>0">
+      <div class="header">
+        <!-- <ng-select
+          [(ngModel)]="pageSize"
+          (clear)="onClear()"
+          style="width: 100px;">
+          <ng-option [value]="5">5</ng-option>
+          <ng-option [value]="12">12</ng-option>
+          <ng-option [value]="25">25</ng-option>
+          <ng-option [value]="50">50</ng-option>
+          <ng-option [value]="100">100</ng-option>
+          <ng-option *ngIf="rows && rows.length < 500" [value]="rows.length">Todos</ng-option>
+        </ng-select> -->
+        <input style="margin-left: 10px;" class="form-control" type="text" name="search"
+          placeholder="Pesquisar..." [(ngModel)]="filter" />
+      </div>
+    </div>
+  </div>
+  <div class="card-content" style="padding:0 20px 20px;" *ngIf="rows && rows.length>0">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered" style="text-transform: uppercase;">
+            <thead>
+              <tr>
+                <ng-container *ngIf="item.fields">
+                  <ng-container *ngFor='let field of item.fields'>
+                    <th (click)="sort(field.model!)">{{field.label}}
+                      <i *ngIf="key === field.model"
+                        [ngClass]="reverse ? 'la-sort-alpha-up-alt la' : 'la-sort-alpha-down la'"></i>
+                    </th>
+                  </ng-container>
+                </ng-container>
+                <th width="80">Ações</th>
+              </tr>
+            </thead>
+            <tbody><!-- filter: filter grdFilter: getFilter() -->
+              <ng-container
+                *ngFor="let row of _rows, let i = index">
+                <tr *ngIf="!row.Omite" [ngClass]="row.color">
+                  <ng-container *ngIf="item.fields">
+                    <td *ngFor='let field of item.fields' [width]="field.width">
+                      <ng-container *ngIf="field.isDateType">
+                        {{row[field.model!] | date: 'dd/MM/yyyy'}}
+                      </ng-container>
+                      <ng-container *ngIf="!field.isDateType && field.isHourType">
+                        {{row[field.model!] | date: 'HH:mm'}}
+                      </ng-container>
+                      <ng-container *ngIf="!field.isDateType && !field.isHourType && field.isTimeDate">
+                        {{row[field.model!] | date: 'dd/MM/yyyy HH:mm'}}
+                      </ng-container>
+                      <ng-container *ngIf="field.limiteCaracteres">
+                        <ng-template #inner>
+                          <div [innerHtml]="row[field.model!]"></div>
+                        </ng-template>
+                        <!-- <div [ngClass]="{'limitTextHeight': isReadMore}" [innerHtml]="row[field.model!]"></div>
+                        <a *ngIf="row[field.model!]" class="btn-mostrar" [ngbTooltip]="inner"
+                          triggers="click" [autoClose]="'outside'">
+                          {{ isReadMore ? 'Mostrar mais': 'Mostrar menos' }}
+                        </a> -->
+                      </ng-container>
+                      <ng-container
+                        *ngIf="!field.isDateType
+                        && !field.isHourType
+                        && !field.isTimeDate
+                        && !field.limiteCaracteres
+                        && !field.withImage
+                        &&!field.multipleLabel
+                        &&!field.isIcon
+                        && !field.modelComponent">
+                        <div [style]="field.style" [innerHtml]="row[field.model!]"></div>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="!field.isDateType
+                        && !field.isHourType
+                        && !field.isTimeDate
+                        && !field.limiteCaracteres
+                        && !field.withImage
+                        && !field.modelComponent
+                        && !field.isIcon
+                        && field.multipleLabel">
+                        <!-- {{ mostrarProcessoAssociado(row) }} -->
+                        <ng-container
+                          *ngIf="row[field.model!].length>0">
+                          <div class="row">
+                            <div [ngClass]="countRows(row[field.model!]) > 1 ? 'col-md-10' : 'col-md-12'">
+                              {{row[field.model!][field!.labelPosition!.posicao!][field!.labelPosition!.label!][field!.labelPosition!.value!]}}
+                            </div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="field.isIcon">
+                        <div [innerHTML]="row.icon || ''"></div>
+                      </ng-container>
+                      <ng-container *ngIf="field.withImage && !field.modelComponent">
+                        <div style="display: flex; align-items: center;">
+
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="field.modelComponent && row[field.modelComponent.label]">
+                        <!-- {{getField(row[field.modelComponent.label])}} -->
+                        <ng-container *ngIf="field.isDateType">
+                          {{row[field.modelComponent.label][field!.modelComponent!.value!] | date: 'dd/MM/yyyy'}}
+                        </ng-container>
+                        <div *ngIf="!field.isDateType"
+                          [innerHtml]="row[field.modelComponent.label][field!.modelComponent!.value!]"></div>
+                        <ng-container *ngIf="field.modelComponent.modelComponent">
+                          <div *ngIf="!field.isDateType && !field.withImage"
+                            [innerHtml]="row[field.modelComponent.label][field.modelComponent.modelComponent.label][field.modelComponent.modelComponent.value!]">
+                          </div>
+                          <ng-container *ngIf="field.isDateType">
+                            {{row[field.modelComponent.label][field.modelComponent.modelComponent.label][field.modelComponent.modelComponent.value!]
+                            | date: 'dd/MM/yyyy'}}
+                          </ng-container>
+                          <ng-container *ngIf="field.withImage">
+                            <div style="display: flex; align-items: center;">
+                              <span style="margin-left: 5px;">
+                                {{row[field.modelComponent.label][field.modelComponent.modelComponent.label][field.modelComponent.modelComponent.value!]}}
+                              </span>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="field.isExecutores" style="z-index: 99;">
+                        <div class="position-relative" style="display: flex; align-items: center;"
+                          *ngIf="row['tarefa'] && row['tarefa']['tarefa_colaborador'] && row['tarefa']['tarefa_colaborador'][0] && row['tarefa']['tarefa_colaborador'][0]['colaborador']">
+
+                          {{row['tarefa']['tarefa_colaborador'][0]['colaborador']['Apelido']}}
+                        </div>
+
+                        <div class="position-relative" style="display: flex; align-items: center;"
+                          *ngIf="row['Colaboradores'] && row['Colaboradores'][0]">
+
+                          {{row['Colaboradores'][0]['Apelido']}}
+                        </div>
+                      </ng-container>
+                    </td>
+                  </ng-container>
+                  <td class="text-center" *ngIf="isFilter">
+                    <div class="btn-group-sm">
+                      <button type="button"
+                        [ngClass]="{'btn-primary': i === selectedButtonIndex, 'btn-link': !(i === selectedButtonIndex)}"
+                        class="btn btn-sm" (click)="onOptionChanged(row,i)"><i
+                          class="feather icon-check-square"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="text-center" *ngIf="!isFilter">
+                    <div class="btn-group-sm">
+                      <ng-container *ngFor='let button of buttons'>
+                        <ng-container *ngIf="button.regraVisivel && row[button.regraLabel!] ===  button.regraVisivel">
+                          <!-- <a *ngIf="permissoesService.permissao(button.permissao.IDMenu,button.permissao.permissao) == 'S'"
+                            style="cursor: pointer;"
+                            [class]="button.class"
+                            (click)="buttonClick(row,button,$event,i)" [title]="button.title">
+                            <i [class]="button.icon"></i>
+                          </a> -->
+                        </ng-container>
+                        <ng-container *ngIf="button.regraLabel && !button.regraVisivel && row[button.regraLabel]">
+                          <!-- <a *ngIf="permissoesService.permissao(button.permissao.IDMenu,button.permissao.permissao) == 'S'"
+                            style="cursor: pointer;"
+                            [class]="button.class"
+                            (click)="buttonClick(row,button,$event,i)" [title]="button.title">
+                            <i [class]="button.icon"></i>
+                          </a> -->
+                        </ng-container>
+                        <ng-container
+                          *ngIf="!button.regraVisivel && !button.regraLabel && button.regraVisivelLength && row[button.regraVisivelLength].length > 0">
+                          <!-- <a *ngIf="permissoesService.permissao(button.permissao.IDMenu,button.permissao.permissao) == 'S'"
+                            style="cursor: pointer;"
+                            [class]="button.class"
+                            (click)="buttonClick(row,button,$event,i)" [title]="button.title">
+                            <i [class]="button.icon"></i>
+                          </a> -->
+                        </ng-container>
+                        <ng-container *ngIf="!button.regraVisivel && !button.regraLabel && !button.regraVisivelLength">
+                          <!-- <a *ngIf="permissoesService.permissao(button.permissao.IDMenu,button.permissao.permissao) == 'S'"
+                            style="cursor: pointer;"
+                            [class]="button.class"
+                            (click)="buttonClick(row,button,$event,i)" [title]="button.title">
+                            <i [class]="button.icon"></i>
+                          </a> -->
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-12 conteudo-footer">
+        <div class="pull-right" *ngIf="_rows.length > 0">{{_rows.length}} <small> registro(s)</small></div>
+        <ng-container>
+
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="rows && rows.length===0 && exibeContainerVaziu1">
+  <div class="container">
+    <div class="text-center conteudo">
+      <div
+        class="d-inline-block rounded-circle"
+        [ngStyle]="{'background-color': hexToRGB('#11a1fd', 0.1)}">
+        <i
+          class="icon-size"
+          style="color: #11a1fd;"
+          [ngClass]="'la la-folder-open'"></i>
+      </div>
+      <!-- <p>{{legendaSemRegistro}}</p> -->
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="rows && rows.length===0 && exibeContainerVaziu2">
+  <div class="container">
+    <div class="text-center conteudo2">
+      <div
+        class="d-inline-block rounded-circle"
+        [ngStyle]="{'background-color': hexToRGB('#11a1fd', 0.1)}">
+        <i
+          class="icon-size2"
+          style="color: #11a1fd;"
+          [ngClass]="'la la-folder-open'">
+        </i>
+      </div>
+      <!-- <p>{{legendaSemRegistro}}</p> -->
+      <!-- <button type="button" (click)="buttonClick(null,newButton,$event,null)"
+        *ngIf="btnNovoCadastro&&permissoesService.permissao(newButton.permissao.IDMenu,newButton.permissao.permissao) == 'S'"
+        class="btn btn-outline-primary round btn-sm">
+        <i class="feather icon-plus-circle"></i> Novo Cadastro</button> -->
+    </div>
+  </div>
+</ng-container>

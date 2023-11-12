@@ -9,12 +9,12 @@ export interface IComponentDefault {
     campos?: ICamposDefault;
     entidade?: number;
     fields?: IField[];
-    size_modal_form?: any;
+    size_modal_form?: any | undefined;
     form_name?: string;
     inputs?: IInputGroup[];
     // inputs?: FormField<string>[];
-    id_update_name?: string;
-    id_update_id?: number;
+    id_update_name?: string | undefined;
+    id_update_id?: number | null;
     btn_delete?: boolean;
     btn_edit?: boolean;
     btn_ver?: boolean;
@@ -28,7 +28,7 @@ export interface IComponentDefault {
     joins?: IJoin[];
     orderBy?: IOrderBy[];
     groupBy?: IGroupBy[];
-    filter?: boolean;
+    filter?: boolean | undefined;
     whereHes?: IWhereHes[];
     withs?: IWith[];
     model?: string;
@@ -108,11 +108,11 @@ export interface ICamposDefault {
 }
 
 export interface IGradeButton {
-    id: string;
-    icon: string;
-    class: string;
+    id?: string;
+    icon?: string;
+    class?: string;
     label?: string;
-    title: string;
+    title?: string;
     regraVisivel?: any;
     regraLabel?: string;
     regraVisivelLength?: string;

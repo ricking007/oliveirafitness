@@ -17,7 +17,8 @@ import { Permissao, Usuario } from 'app/interface/usuario.interface';
 import { IToken } from 'app/interface/token.interface';
 import { Messages } from 'app/enums/messages.enum';
 import { AuthService as AuthService } from 'app/service/auth.service';
-import { AuthService as AuthService2 } from '@core';
+import { AuthService as AuthService2, User } from '@core';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -31,6 +32,9 @@ export class SigninComponent
   loading = false;
   error = '';
   hide = true;
+
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
@@ -42,6 +46,10 @@ export class SigninComponent
     private loadingService: LoadingService,
   ) {
     super();
+    this.currentUserSubject = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem('currentUser') || '{}')
+    );
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
   ngOnInit() {
@@ -79,37 +87,24 @@ export class SigninComponent
             create_at: create_at
           }
 
+          const user: User = {
+            id: usuario?.id_usuario,
+            img: '',
+            username: usuario?.dc_email,
+            password: usuario?.dc_senha,
+            firstName: usuario?.no_nome,
+            lastName: usuario?.no_nome,
+            token: response.token
+          }
 
-          //código do template
-          this.subs.sink = this.authService2
-            .login(this.f['username'].value, this.f['password'].value)
-            .subscribe({
-              next: (res) => {
-                if (res) {
-                  if (res) {
-                    const token = response.token;
-                    if (token) {
-                      this.router.navigate(['/dashboard/dashboard1']);
-                    }
-                  } else {
-                    this.error = 'Invalid Login';
-                  }
-                } else {
-                  this.error = 'Invalid Login';
-                }
-              },
-              error: (error) => {
-                this.error = error;
-                this.submitted = false;
-                this.loading = false;
-              },
-            });
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
 
 
           this.storageService.setData("permissoes", permissao);
           if (this.storageService.setData("token", token)) {
             this.storageService.setData("location", 'true');
-            this.router.navigate(['/admin/dashboard/main']);
+            this.router.navigate(['/dashboard/dashboard1']);
           }
         }
 

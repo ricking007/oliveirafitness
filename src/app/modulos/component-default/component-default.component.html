@@ -1,0 +1,86 @@
+<div class="modal-header">
+  <h4 class="modal-title text-center">{{item?.header}}</h4>
+
+  <button *ngIf="item?.print&&rows.length>0" class="btn btn-outline-warning round btn-novo-cadastro" (click)="print()"><i
+      class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
+  <button type="button" class="close" aria-label="Close" (click)="close()"><i class="icon-x feather"
+      aria-hidden="true"></i></button>
+</div>
+<div class="modal-body">
+  <div class="card">
+    <div class="card-header">
+      <div class="col-md-4">
+        <!-- <input oninput="this.value = this.value.toUpperCase()" class="form-control" type="text" name="search"
+          placeholder="Pesquisar..." [(ngModel)]="filter" /> -->
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-outline-primary round btn-novo-cadastro" (click)="changeComponent()"><i
+            [class]="icon"></i> {{label}}</button>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="col-sm-12">
+        <div class="table-responsive">
+          <div class="text-center">
+            <h6>Todos os cadastros</h6>
+          </div>
+          <table class="table table-hover table-bordered table-striped">
+            <thead>
+              <tr>
+                <ng-container *ngIf="item?.fields">
+                  <th *ngFor='let field of item?.fields'>{{field.label}}</th>
+                </ng-container>
+                <th width="80">Ações</th>
+              </tr>
+            </thead>
+            <!-- <tbody>
+              <tr
+                *ngFor='let row of rows | filter:filter | paginate: {itemsPerPage: count, currentPage: p,totalItems: total } let i = index'>
+                <ng-container *ngIf="item?.fields">
+                  <td *ngFor='let field of item?.fields'>
+                    <ng-container *ngIf="field.isDateType">
+                      {{row[field.model] | date: 'dd/MM/yyyy'}}
+                    </ng-container>
+                    <ng-container *ngIf="!field.isDateType && field.isHourType">
+                      {{row[field.model] | date: 'HH:mm'}}
+                    </ng-container>
+                    <ng-container *ngIf="!field.isDateType && !field.isHourType && field.isTimeDate">
+                      {{row[field.model] | date: 'dd/MM/yyyy HH:mm'}}
+                    </ng-container>
+                    <ng-container *ngIf="!field.isDateType && !field.isHourType && !field.isTimeDate">
+                      <div [innerHtml]="row[field.model]"></div>
+                    </ng-container>
+                  </td>
+                </ng-container>
+                <td class="text-center">
+                  <div class="btn-group-sm">
+                    <a *ngIf="item?.btn_ver" class="btn-success btn-sm" style="cursor: pointer;" (click)="edit(row)"
+                      title="Ver">
+                      <i class="fa fa-eye text-white"></i>
+                    </a>
+                    <a *ngIf="item?.btn_edit" class="btn-success btn-sm" style="cursor: pointer;" (click)="edit(row)"
+                      title="Editar">
+                      <i class="icon-edit feather text-white"></i>
+                    </a>
+                    <a *ngIf="item?.btn_delete" class="btn-danger btn-sm" style="cursor: pointer;"
+                      (click)="delete(row,i)" title="Excluir linha">
+                      <i class="icon-trash-2 feather text-white"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+        </div>
+      </div>
+      <!-- <div class="col-md-12 conteudo-footer">
+        <div class="pull-right" *ngIf="total > 0">{{total}} <small> registros</small></div>
+        <ng-container>
+          <pagination-controls class="float-right" (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Próxima"
+            maxSize="10" responsive="true"></pagination-controls>
+        </ng-container>
+
+      </div> -->
+    </div>
+  </div>
+</div>

@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 import { ConfigService } from '@config';
 import { UnsubscribeOnDestroyAdapter } from '@shared';
 import { InConfiguration, AuthService, LanguageService } from '@core';
+import { Usuario } from 'app/interface/usuario.interface';
+import { StorageService } from 'app/service/storage.service';
 
 interface Notifications {
   message: string;
@@ -39,6 +41,7 @@ export class HeaderComponent
   isOpenSidebar?: boolean;
   docElement?: HTMLElement;
   isFullScreen = false;
+  usuario: Usuario = {};
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -47,11 +50,14 @@ export class HeaderComponent
     private configService: ConfigService,
     private authService: AuthService,
     private router: Router,
-    public languageService: LanguageService
+    public languageService: LanguageService,
+    public storageService: StorageService
   ) {
     super();
+    this.usuario = this.storageService.getData("usuario");
   }
   listLang = [
+    { text: 'Portugês', flag: 'assets/images/flags/brazil.png', lang: 'br' },
     { text: 'English', flag: 'assets/images/flags/us.jpg', lang: 'en' },
     { text: 'Spanish', flag: 'assets/images/flags/spain.jpg', lang: 'es' },
     { text: 'German', flag: 'assets/images/flags/germany.jpg', lang: 'de' },
